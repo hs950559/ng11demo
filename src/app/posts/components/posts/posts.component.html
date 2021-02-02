@@ -1,5 +1,15 @@
 <div class="container-fluid" *ngIf="posts$ | async as posts">
-  <h1>Posts</h1>
+  <div class="d-flex justify-content-between">
+    <h1>Posts</h1>
+    <a
+      class="btn btn-primary d-flex align-self-center"
+      title="Add Post"
+      [routerLink]="['add']"
+    >
+      <i class="ti-plus"></i>
+    </a>
+  </div>
+
   <table class="table">
     <thead class="thead-light">
       <tr>
@@ -7,6 +17,7 @@
         <th>Title</th>
         <th>Date</th>
         <th>Description</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +26,14 @@
         <td>{{ post.title }}</td>
         <td>{{ post.createdOn | date }}</td>
         <td>{{ post.body }}</td>
+        <td>
+          <button class="btn btn-primary mr-2" title="Edit Post">
+            <i class="ti-pencil"></i>
+          </button>
+          <button class="btn btn-danger" title="Remove Post">
+            <i class="ti-trash"></i>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

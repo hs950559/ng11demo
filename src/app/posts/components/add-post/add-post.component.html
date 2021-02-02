@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <h1>Add New Post</h1>
+
+  <form (ngSubmit)="addPost(form.value)" #form="ngForm">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" ngModel name="title" />
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Description</label>
+      <textarea
+        rows="3"
+        class="form-control"
+        id="body"
+        ngModel
+        name="body"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Post</button>
+  </form>
+</div>

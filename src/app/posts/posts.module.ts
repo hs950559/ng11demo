@@ -8,12 +8,15 @@ import { StoreModule } from '@ngrx/store';
 import { postReducer } from './store/posts.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { PostsEffect } from './store/effects/posts.effects';
+import { AddPostComponent } from './components/add-post/add-post.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [PostsComponent],
+  declarations: [PostsComponent, AddPostComponent],
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
     PostsRoutingModule,
     StoreModule.forFeature('posts', postReducer),
     EffectsModule.forFeature([PostsEffect]),
