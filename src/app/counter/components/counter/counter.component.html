@@ -1,0 +1,7 @@
+<div class="card card-body border mb-2">
+  Current Count: {{ count$ | async }}
+</div>
+
+<button class="btn btn-primary mr-2" (click)="increment()">Increment</button>
+<button class="btn btn-info mr-2" (click)="decrement()">Decrement</button>
+<button class="btn btn-warning" (click)="reset()">Reset Counter</button>

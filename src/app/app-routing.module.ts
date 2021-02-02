@@ -9,11 +9,11 @@ const routes: Routes = [
     path: 'demo',
     loadChildren: () => import('./demo/demo.module').then((m) => m.DemoModule),
   },
-  // {
-  //   path: 'dform',
-  //   loadChildren: () =>
-  //     import('./dform/dform.module').then((m) => m.DformModule),
-  // },
+  {
+    path: 'counter',
+    loadChildren: () =>
+      import('./counter/counter.module').then((m) => m.CounterModule),
+  },
   {
     path: '',
     redirectTo: '/home',
