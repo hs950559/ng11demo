@@ -28,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/scss/main.scss"
             ],
             "scripts": []
           },
@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "ng11demo"
+  "defaultProject": "ng11demo",
+  "cli": {
+    "analytics": false
+  }
 }

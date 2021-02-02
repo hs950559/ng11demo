@@ -1,0 +1,27 @@
+@import 'theme/theme';
+
+body {
+  padding-top: 80px;
+}
+
+.navbar {
+  padding: 0 1rem;
+  height: 70px;
+
+  li {
+    padding: 1rem;
+
+    &.active {
+      background-color: $brand-primary-light;
+    }
+  }
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #fff;
+}
+
+// Custom
+.form-control.is-invalid:focus {
+  box-shadow: none;
+}

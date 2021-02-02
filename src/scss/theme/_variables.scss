@@ -1,0 +1,18 @@
+﻿// Bootstrap overrides
+// Colors
+//
+// Grayscale and brand colors for use across Bootstrap.
+
+$brand-primary-light: #63c2de !default;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-transitions: true;
+$enable-rounded: false;
+
+$font-family-sans-serif: SEGOEUIL, 'Helvetica Neue', Helvetica, Arial,
+  sans-serif !default;
+
+$input-focus-box-shadow: none;
