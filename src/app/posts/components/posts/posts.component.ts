@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PostService } from '../../services/post.service';
+import { getPostsAction } from '../../store/actions/posts.actions';
+import { postsSelector } from '../../store/posts.selectors';
 
 @Component({
   selector: 'app-posts',
@@ -9,9 +11,18 @@ import { PostService } from '../../services/post.service';
 })
 export class PostsComponent implements OnInit {
   posts$: Observable<any>;
-  constructor(private postService: PostService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.posts$ = this.postService.getPosts();
+    this.initializeValues();
+    this.fetchData();
+  }
+
+  initializeValues() {
+    this.posts$ = this.store.pipe(select(postsSelector));
+  }
+
+  fetchData() {
+    this.store.dispatch(getPostsAction());
   }
 }
