@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <h1>Edit Post</h1>
+  {{ post | json }}
+  <form (ngSubmit)="updatePost()" #form="ngForm" *ngIf="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        [ngModel]="post.title"
+        name="title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Description</label>
+      <textarea
+        rows="3"
+        class="form-control"
+        id="body"
+        [ngModel]="post.body"
+        name="body"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Post</button>
+  </form>
+</div>

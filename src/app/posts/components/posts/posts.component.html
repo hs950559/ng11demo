@@ -27,9 +27,13 @@
         <td>{{ post.createdOn | date }}</td>
         <td>{{ post.body }}</td>
         <td>
-          <button class="btn btn-primary mr-2" title="Edit Post">
+          <a
+            class="btn btn-primary mr-2"
+            title="Edit Post"
+            [routerLink]="[post.id, 'edit']"
+          >
             <i class="ti-pencil"></i>
-          </button>
+          </a>
           <button class="btn btn-danger" title="Remove Post">
             <i class="ti-trash"></i>
           </button>

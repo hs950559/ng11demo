@@ -10,9 +10,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { PostsEffect } from './store/effects/posts.effects';
 import { AddPostComponent } from './components/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 @NgModule({
-  declarations: [PostsComponent, AddPostComponent],
+  declarations: [PostsComponent, AddPostComponent, EditPostComponent],
   imports: [
     CommonModule,
     HttpClientModule,
