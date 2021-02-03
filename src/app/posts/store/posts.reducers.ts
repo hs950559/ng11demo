@@ -1,9 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import {
+  addPostAction,
+  addPostFailureAction,
+  addPostSuccessAction,
   getPostsAction,
   getPostsFailureAction,
   getPostsSuccessAction,
 } from './actions/posts.actions';
+
 import { PostStateInterface } from './types/post.interface';
 
 const initialState: PostStateInterface = {
@@ -33,6 +37,29 @@ const _postReducer = createReducer(
 
   on(
     getPostsFailureAction,
+    (state): PostStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
+  on(
+    addPostAction,
+    (state): PostStateInterface => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+  on(
+    addPostSuccessAction,
+    (state, action): PostStateInterface => ({
+      ...state,
+      isLoading: false,
+      data: [...state.data, action.post],
+    })
+  ),
+
+  on(
+    addPostFailureAction,
     (state): PostStateInterface => ({
       ...state,
       isLoading: false,

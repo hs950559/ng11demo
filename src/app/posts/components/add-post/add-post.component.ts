@@ -1,28 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { PostService } from '../../services/post.service';
+import { addPostAction } from '../../store/actions/posts.actions';
+import { PostStateInterface } from '../../store/types/post.interface';
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss'],
 })
-export class AddPostComponent implements OnInit, OnDestroy {
+export class AddPostComponent implements OnInit {
   addPostSubscription: Subscription;
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(private store: Store<PostStateInterface>) {}
 
   ngOnInit(): void {}
 
   addPost(val) {
-    this.addPostSubscription = this.postService
-      .addPost(val)
-      .subscribe((post) => {
-        this.router.navigateByUrl('posts');
-      });
-  }
-
-  ngOnDestroy() {
-    this.addPostSubscription.unsubscribe();
+    this.store.dispatch(addPostAction({ post: val }));
   }
 }

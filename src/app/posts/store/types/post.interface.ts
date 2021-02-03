@@ -10,3 +10,14 @@ export interface PostStateInterface {
   error: string | null;
   data: PostInterface[] | null;
 }
+
+export interface PostInputInterface {
+  title: string;
+  body: string;
+}
+
+export interface PostInputStateInterface {
+  isLoading: boolean;
+  error: string | null;
+  data: PostInputInterface | null;
+}
