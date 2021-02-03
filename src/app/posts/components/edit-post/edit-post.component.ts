@@ -31,6 +31,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
         this.post = post;
       });
   }
+
   updatePost(post) {
     this.updateSub = this.postService
       .updatePost(this.post.id, post)
