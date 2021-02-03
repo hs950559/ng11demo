@@ -4,6 +4,9 @@ import {
   addPostAction,
   addPostFailureAction,
   addPostSuccessAction,
+  editPostAction,
+  editPostFailureAction,
+  editPostSuccessAction,
   getPostsAction,
   getPostsFailureAction,
   getPostsSuccessAction,
@@ -50,10 +53,38 @@ export class PostsEffect {
     )
   );
 
+  editPost$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editPostAction),
+      switchMap(({ postId, post }) => {
+        return this.postService.updatePost(postId, post).pipe(
+          map((post: PostInterface) => {
+            return editPostSuccessAction({ post });
+          }),
+          catchError(() => {
+            return of(editPostFailureAction());
+          })
+        );
+      })
+    )
+  );
+
   createPostSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(PostActionTypes.ADD_POST_SUCCESS),
+        tap(() => {
+          this.router.navigateByUrl('/posts');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  editPostSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(PostActionTypes.EDIT_POST_SUCCESS),
         tap(() => {
           this.router.navigateByUrl('/posts');
         })

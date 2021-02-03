@@ -13,6 +13,7 @@ export const getPostsFailureAction = createAction(
   PostActionTypes.GET_POSTS_FAILURE
 );
 
+// Add
 export const addPostAction = createAction(
   PostActionTypes.ADD_POST,
   props<{ post: PostInputInterface }>()
@@ -25,4 +26,19 @@ export const addPostSuccessAction = createAction(
 
 export const addPostFailureAction = createAction(
   PostActionTypes.ADD_POST_FAILURE
+);
+
+// Edit
+export const editPostAction = createAction(
+  PostActionTypes.EDIT_POST,
+  props<{ postId: string; post: PostInputInterface }>()
+);
+
+export const editPostSuccessAction = createAction(
+  PostActionTypes.EDIT_POST_SUCCESS,
+  props<{ post: PostInterface }>()
+);
+
+export const editPostFailureAction = createAction(
+  PostActionTypes.EDIT_POST_SUCCESS
 );

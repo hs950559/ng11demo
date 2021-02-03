@@ -1,8 +1,12 @@
+import { act } from '@ngrx/effects';
 import { Action, createReducer, on } from '@ngrx/store';
+import { startWith } from 'rxjs/operators';
 import {
   addPostAction,
   addPostFailureAction,
   addPostSuccessAction,
+  editPostAction,
+  editPostSuccessAction,
   getPostsAction,
   getPostsFailureAction,
   getPostsSuccessAction,
@@ -56,6 +60,41 @@ const _postReducer = createReducer(
       isLoading: false,
       data: [...state.data, action.post],
     })
+  ),
+
+  on(
+    addPostFailureAction,
+    (state): PostStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
+  on(
+    editPostAction,
+    (state): PostStateInterface => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+  on(
+    editPostSuccessAction,
+    (state, action): PostStateInterface => {
+      const index = state.data.findIndex((h) => h.id === action.post.id);
+      let updatedState = [...state.data];
+      if (index >= 0) {
+        updatedState = [
+          ...state.data.slice(0, index),
+          action.post,
+          ...state.data.slice(index + 1),
+        ];
+      }
+
+      return {
+        ...state,
+        isLoading: false,
+        data: updatedState,
+      };
+    }
   ),
 
   on(

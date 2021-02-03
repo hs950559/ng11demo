@@ -1,22 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { PostService } from '../../services/post.service';
-import { PostInterface } from '../../store/types/post.interface';
+import { editPostAction } from '../../store/actions/posts.actions';
+import {
+  PostInterface,
+  PostStateInterface,
+} from '../../store/types/post.interface';
 
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
   styleUrls: ['./edit-post.component.scss'],
 })
-export class EditPostComponent implements OnInit, OnDestroy {
+export class EditPostComponent implements OnInit {
   post: PostInterface;
-  sub: Subscription;
-  updateSub: Subscription;
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
-    private router: Router
+    private store: Store<PostStateInterface>
   ) {}
 
   ngOnInit(): void {
@@ -33,15 +35,6 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   updatePost(post) {
-    this.updateSub = this.postService
-      .updatePost(this.post.id, post)
-      .subscribe(() => {
-        this.router.navigateByUrl('/posts');
-      });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.updateSub.unsubscribe();
+    this.store.dispatch(editPostAction({ postId: String(this.post.id), post }));
   }
 }
