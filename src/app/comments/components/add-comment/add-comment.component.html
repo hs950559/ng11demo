@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <h1>Add New Comment</h1>
+
+  <form (ngSubmit)="addComment(form.value)" #form="ngForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" ngModel name="name" />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        ngModel
+        name="email"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Description</label>
+      <textarea
+        rows="3"
+        class="form-control"
+        id="body"
+        ngModel
+        name="body"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Post</button>
+  </form>
+</div>
