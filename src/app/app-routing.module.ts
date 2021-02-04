@@ -15,6 +15,11 @@ const routes: Routes = [
       import('./posts/posts.module').then((m) => m.PostsModule),
   },
   {
+    path: 'comments',
+    loadChildren: () =>
+      import('./comments/comments.module').then((m) => m.CommentsModule),
+  },
+  {
     path: 'counter',
     loadChildren: () =>
       import('./counter/counter.module').then((m) => m.CounterModule),

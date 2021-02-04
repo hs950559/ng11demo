@@ -26,7 +26,6 @@ export class PostResolver implements Resolve<boolean> {
           this.loaded = true;
           this.store.dispatch(getPostsAction());
         }
-        console.log('hhhhh', postsLoaded);
       }),
       filter((postsLoaded) => postsLoaded),
       first(),
