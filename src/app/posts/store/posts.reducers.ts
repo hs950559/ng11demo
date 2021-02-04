@@ -5,6 +5,9 @@ import {
   addPostAction,
   addPostFailureAction,
   addPostSuccessAction,
+  deletePostAction,
+  deletePostFailureAction,
+  deletePostSuccessAction,
   editPostAction,
   editPostSuccessAction,
   getPostsAction,
@@ -99,6 +102,34 @@ const _postReducer = createReducer(
 
   on(
     addPostFailureAction,
+    (state): PostStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
+
+  // Delete
+  on(
+    deletePostAction,
+    (state, action): PostStateInterface => {
+      const posts = state.data.filter((h) => h.id !== action.postId);
+      return {
+        ...state,
+        data: posts,
+      };
+    }
+  ),
+
+  on(
+    deletePostSuccessAction,
+    (state): PostStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
+
+  on(
+    deletePostFailureAction,
     (state): PostStateInterface => ({
       ...state,
       isLoading: false,

@@ -4,6 +4,9 @@ import {
   addPostAction,
   addPostFailureAction,
   addPostSuccessAction,
+  deletePostAction,
+  deletePostFailureAction,
+  deletePostSuccessAction,
   editPostAction,
   editPostFailureAction,
   editPostSuccessAction,
@@ -91,6 +94,22 @@ export class PostsEffect {
       );
     },
     { dispatch: false }
+  );
+
+  deletePost$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deletePostAction),
+      switchMap(({ postId }) => {
+        return this.postService.deletePost(postId).pipe(
+          map(() => {
+            return deletePostSuccessAction();
+          }),
+          catchError(() => {
+            return of(deletePostFailureAction());
+          })
+        );
+      })
+    )
   );
 
   constructor(

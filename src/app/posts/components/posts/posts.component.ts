@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getPostsAction } from '../../store/actions/posts.actions';
+import {
+  deletePostAction,
+  getPostsAction,
+} from '../../store/actions/posts.actions';
 import { postsSelector } from '../../store/posts.selectors';
 
 @Component({
@@ -24,5 +27,9 @@ export class PostsComponent implements OnInit {
 
   fetchData() {
     this.store.dispatch(getPostsAction());
+  }
+
+  removePost(post) {
+    this.store.dispatch(deletePostAction({ postId: post.id }));
   }
 }

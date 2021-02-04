@@ -11,7 +11,7 @@ export enum PostActionTypes {
   EDIT_POST_SUCCESS = '[Edit Post Page] Edit post success',
   EDIT_POST_FAILURE = '[Edit Post Page] Edit post failure',
 
-  // DELETE_POST = '[Post] Delete post',
-  // DELETE_POST_SUCCESS = '[Post] Delete post success',
-  // DELETE_POST_FAILURE = '[Post] Delete post failure',
+  DELETE_POST = '[Posts] Delete post',
+  DELETE_POST_SUCCESS = '[Posts] Delete post success',
+  DELETE_POST_FAILURE = '[Posts] Delete post failure',
 }

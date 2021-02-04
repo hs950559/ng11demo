@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { PostService } from '../../services/post.service';
 import { editPostAction } from '../../store/actions/posts.actions';
 import {
@@ -13,7 +14,8 @@ import {
   templateUrl: './edit-post.component.html',
   styleUrls: ['./edit-post.component.scss'],
 })
-export class EditPostComponent implements OnInit {
+export class EditPostComponent implements OnInit, OnDestroy {
+  sub: Subscription;
   post: PostInterface;
   constructor(
     private postService: PostService,
@@ -36,5 +38,9 @@ export class EditPostComponent implements OnInit {
 
   updatePost(post) {
     this.store.dispatch(editPostAction({ postId: String(this.post.id), post }));
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

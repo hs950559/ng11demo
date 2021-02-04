@@ -40,5 +40,19 @@ export const editPostSuccessAction = createAction(
 );
 
 export const editPostFailureAction = createAction(
-  PostActionTypes.EDIT_POST_SUCCESS
+  PostActionTypes.EDIT_POST_FAILURE
+);
+
+// Delete
+export const deletePostAction = createAction(
+  PostActionTypes.DELETE_POST,
+  props<{ postId: number }>()
+);
+
+export const deletePostSuccessAction = createAction(
+  PostActionTypes.DELETE_POST_SUCCESS
+);
+
+export const deletePostFailureAction = createAction(
+  PostActionTypes.DELETE_POST_FAILURE
 );

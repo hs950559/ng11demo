@@ -21,4 +21,8 @@ export class PostService {
   updatePost(postId, post) {
     return this.http.put(`${this.API_URL}/${postId}`, post);
   }
+
+  deletePost(postId) {
+    return this.http.delete(`${this.API_URL}/${postId}`);
+  }
 }
