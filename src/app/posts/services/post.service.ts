@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PostService {
-  API_URL = 'http://bdo-api.azurewebsites.net/api/posts';
+  API_URL = 'https://bdo-api.azurewebsites.net/api/posts';
   constructor(private http: HttpClient) {}
 
   getPosts() {

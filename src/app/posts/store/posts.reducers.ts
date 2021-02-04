@@ -21,6 +21,7 @@ const initialState: PostStateInterface = {
   data: null,
   isLoading: false,
   error: null,
+  loaded: false,
 };
 
 const _postReducer = createReducer(
