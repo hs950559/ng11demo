@@ -9,6 +9,7 @@ export interface PostStateInterface {
   isLoading: boolean;
   error: string | null;
   data: PostInterface[] | null;
+  loaded: boolean;
 }
 
 export interface PostInputInterface {

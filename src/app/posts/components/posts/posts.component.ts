@@ -18,15 +18,10 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeValues();
-    this.fetchData();
   }
 
   initializeValues() {
     this.posts$ = this.store.pipe(select(postsSelector));
-  }
-
-  fetchData() {
-    this.store.dispatch(getPostsAction());
   }
 
   removePost(post) {

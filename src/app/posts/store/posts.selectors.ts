@@ -21,3 +21,8 @@ export const postsSelector = createSelector(
   postsFeatureSelector,
   (postsState: PostStateInterface) => postsState.data
 );
+
+export const arePostsLoaded = createSelector(
+  postsFeatureSelector,
+  (state) => state.loaded
+);

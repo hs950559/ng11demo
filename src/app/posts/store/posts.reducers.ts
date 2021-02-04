@@ -39,6 +39,7 @@ const _postReducer = createReducer(
       ...state,
       isLoading: false,
       data: action.posts,
+      loaded: true,
     })
   ),
 
