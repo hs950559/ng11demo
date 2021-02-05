@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommentService } from '../../services/comment.service';
 import { CommentInterface } from '../../store/types/comment.interface';
@@ -8,6 +8,7 @@ import { CommentInterface } from '../../store/types/comment.interface';
   selector: 'app-edit-comment',
   templateUrl: './edit-comment.component.html',
   styleUrls: ['./edit-comment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditCommentComponent implements OnInit {
   comment: Partial<CommentInterface>;

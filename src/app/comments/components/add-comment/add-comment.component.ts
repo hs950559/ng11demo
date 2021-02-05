@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommentService } from '../../services/comment.service';
@@ -7,6 +12,7 @@ import { CommentService } from '../../services/comment.service';
   selector: 'app-add-comment',
   templateUrl: './add-comment.component.html',
   styleUrls: ['./add-comment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCommentComponent implements OnInit, OnDestroy {
   sub: Subscription;
