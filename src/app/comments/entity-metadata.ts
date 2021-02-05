@@ -1,17 +1,11 @@
-import { DefaultDataServiceConfig, EntityMetadataMap } from '@ngrx/data';
+import { EntityMetadataMap } from '@ngrx/data';
+import { compareCourses } from '../shared/utils/utils';
 
-const entityMetadata: EntityMetadataMap = {
-  Comment: {},
-};
-
-export const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: 'https://jsonplaceholder.typicode.com',
-};
-
-// because the plural of "hero" is not "heros"
-// const pluralNames = { Hero: 'Heroes' };
-
-export const entityConfig = {
-  entityMetadata,
-  // pluralNames
+export const entityMetadata: EntityMetadataMap = {
+  Comment: {
+    sortComparer: compareCourses,
+    entityDispatcherOptions: {
+      optimisticUpdate: true,
+    },
+  },
 };

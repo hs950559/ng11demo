@@ -30,11 +30,16 @@
           <a
             class="btn btn-primary mr-2"
             title="Edit comment"
+            [state]="comment"
             [routerLink]="[comment.id, 'edit']"
           >
             <i class="ti-pencil"></i>
           </a>
-          <button class="btn btn-danger" title="Remove comment">
+          <button
+            class="btn btn-danger"
+            title="Remove comment"
+            (click)="removeComment(comment)"
+          >
             <i class="ti-trash"></i>
           </button>
         </td>

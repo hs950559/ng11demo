@@ -10,15 +10,13 @@ import { CommentInterface } from '../../store/types/comment.interface';
 })
 export class CommentsComponent implements OnInit {
   comments$: Observable<CommentInterface[]>;
-  constructor(private commentService: CommentService) {
+  constructor(private commentService: CommentService) {}
+
+  ngOnInit(): void {
     this.comments$ = this.commentService.entities$;
   }
 
-  ngOnInit(): void {
-    this.getComments();
-  }
-
-  getComments() {
-    this.commentService.getAll();
+  removeComment(post) {
+    this.commentService.delete(post);
   }
 }

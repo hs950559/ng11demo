@@ -1,1 +1,36 @@
-<p>edit-comment works!</p>
+<div class="container-fluid">
+  <h1>Edit Comment</h1>
+  <form (ngSubmit)="updateComment(form.value)" #form="ngForm" *ngIf="comment">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [ngModel]="comment.name"
+        name="name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        [ngModel]="comment.email"
+        name="email"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Description</label>
+      <textarea
+        rows="3"
+        class="form-control"
+        id="body"
+        [ngModel]="comment.body"
+        name="body"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Comment</button>
+  </form>
+</div>
