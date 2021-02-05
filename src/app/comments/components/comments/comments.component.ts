@@ -16,7 +16,7 @@ export class CommentsComponent implements OnInit {
     this.comments$ = this.commentService.entities$;
   }
 
-  removeComment(post) {
-    this.commentService.delete(post);
+  removeComment(comment: CommentInterface) {
+    this.commentService.delete(comment);
   }
 }

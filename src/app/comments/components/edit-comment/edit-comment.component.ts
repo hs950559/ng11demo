@@ -24,7 +24,7 @@ export class EditCommentComponent implements OnInit {
   }
 
   updateComment(val) {
-    const comment = { ...this.comment, ...val };
+    const comment: CommentInterface = { ...this.comment, ...val };
     this.commentService.update(comment);
     this.router.navigateByUrl('/comments');
   }
