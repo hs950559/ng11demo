@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
+import { LoaderService } from './shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +16,30 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'ng9Demo';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loaderService: LoaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onRouteEvents();
+  }
+
+  onRouteEvents() {
+    this.router.events.subscribe((event) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.loaderService.show();
+          break;
+        }
+
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.loaderService.hide();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
+  }
 }
