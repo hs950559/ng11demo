@@ -6,6 +6,7 @@ import {
   getPostsAction,
 } from '../../store/actions/posts.actions';
 import { postsSelector } from '../../store/posts.selectors';
+import { PostStateInterface } from '../../store/types/post.interface';
 
 @Component({
   selector: 'app-posts',
@@ -14,7 +15,7 @@ import { postsSelector } from '../../store/posts.selectors';
 })
 export class PostsComponent implements OnInit {
   posts$: Observable<any>;
-  constructor(private store: Store) {}
+  constructor(private store: Store<PostStateInterface>) {}
 
   ngOnInit(): void {
     this.initializeValues();

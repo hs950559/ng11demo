@@ -2,10 +2,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppStateInterface } from 'src/app/shared/types/app-state.interface';
 import { PostStateInterface } from './types/post.interface';
 
-export const postsFeatureSelector = createFeatureSelector<
-  AppStateInterface,
-  PostStateInterface
->('posts');
+export const postsFeatureSelector = createFeatureSelector<PostStateInterface>(
+  'posts'
+);
 
 export const isLoadingSelector = createSelector(
   postsFeatureSelector,
