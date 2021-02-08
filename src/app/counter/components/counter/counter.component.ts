@@ -15,9 +15,9 @@ import { CounterStateInterface } from '../../types/counter.interface';
   styleUrls: ['./counter.component.scss'],
 })
 export class CounterComponent implements OnInit {
-  count$: Observable<CounterStateInterface>;
+  count$: Observable<number>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store<CounterStateInterface>) {}
 
   ngOnInit() {
     this.initializeValues();

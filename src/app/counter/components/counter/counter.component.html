@@ -1,5 +1,5 @@
 <div class="card card-body border mb-2">
-  Current Count: {{ count$ | async }}
+  Current Count: {{ count$ | async | json }}
 </div>
 
 <button class="btn btn-primary mr-2" (click)="increment()">Increment</button>
