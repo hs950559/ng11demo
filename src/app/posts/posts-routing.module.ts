@@ -20,6 +20,9 @@ const routes: Routes = [
   {
     path: ':postId/edit',
     component: EditPostComponent,
+    resolve: {
+      posts: PostResolver,
+    },
   },
 ];
 

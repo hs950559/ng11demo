@@ -25,3 +25,9 @@ export const arePostsLoaded = createSelector(
   postsFeatureSelector,
   (state) => state.loaded
 );
+
+export const getPostById = createSelector(
+  postsFeatureSelector,
+  (state, props) =>
+    state.data && state.data.find((item) => item.id === props.id)
+);

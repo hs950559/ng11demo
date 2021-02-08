@@ -1,9 +1,11 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { PostService } from '../../services/post.service';
+import { tap } from 'rxjs/operators';
 import { editPostAction } from '../../store/actions/posts.actions';
+import { getPostById } from '../../store/posts.selectors';
 import {
   PostInterface,
   PostStateInterface,
@@ -16,11 +18,11 @@ import {
 })
 export class EditPostComponent implements OnInit, OnDestroy {
   sub: Subscription;
-  post: PostInterface;
+  post: Partial<PostInterface>;
   constructor(
-    private postService: PostService,
-    private route: ActivatedRoute,
-    private store: Store<PostStateInterface>
+    private store: Store<PostStateInterface>,
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -28,12 +30,23 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   fetcheData() {
+    this.post = this.location.getState();
+
+    if (!this.post.id) {
+      this.fetchSinglePost();
+    }
+  }
+
+  fetchSinglePost() {
     const postId = this.route.snapshot.paramMap.get('postId');
-    this.sub = this.postService
-      .getPost(postId)
-      .subscribe((post: PostInterface) => {
-        this.post = post;
-      });
+    this.sub = this.store
+      .pipe(
+        select(getPostById, { id: postId }),
+        tap((post) => {
+          this.post = post;
+        })
+      )
+      .subscribe();
   }
 
   updatePost(post) {
@@ -41,6 +54,6 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub && this.sub.unsubscribe();
   }
 }
