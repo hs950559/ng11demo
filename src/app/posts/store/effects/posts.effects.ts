@@ -20,6 +20,7 @@ import { PostService } from '../../services/post.service';
 import { PostInterface } from '../types/post.interface';
 import { Router } from '@angular/router';
 import { PostActionTypes } from '../posts-action-types';
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 
 @Injectable()
 export class PostsEffect {
@@ -60,11 +61,13 @@ export class PostsEffect {
     this.actions$.pipe(
       ofType(editPostAction),
       switchMap(({ postId, post }) => {
+        this.loader.show();
         return this.postService.updatePost(postId, post).pipe(
           map((post: PostInterface) => {
             return editPostSuccessAction({ post });
           }),
           catchError(() => {
+            this.loader.hide();
             return of(editPostFailureAction());
           })
         );
@@ -89,6 +92,7 @@ export class PostsEffect {
       return this.actions$.pipe(
         ofType(PostActionTypes.EDIT_POST_SUCCESS),
         tap(() => {
+          this.loader.hide();
           this.router.navigateByUrl('/posts');
         })
       );
@@ -115,6 +119,7 @@ export class PostsEffect {
   constructor(
     private actions$: Actions,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private loader: LoaderService
   ) {}
 }
