@@ -1,0 +1,30 @@
+<h1 *ngIf="editing">Edit Album</h1>
+<h1 *ngIf="!editing">Add Album</h1>
+
+<form (ngSubmit)="addEditPost(form.value)" [formGroup]="form">
+  <div class="mb-3">
+    <label for="userId" class="form-label">User ID</label>
+    <input
+      type="text"
+      class="form-control"
+      id="userId"
+      formControlName="userId"
+      name="userId"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      formControlName="title"
+      name="title"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">
+    <ng-container *ngIf="editing">Update</ng-container>
+    <ng-container *ngIf="!editing">Add</ng-container>
+    Album
+  </button>
+</form>
