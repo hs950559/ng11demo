@@ -41,7 +41,7 @@ export class AddEditAlbumComponent implements OnInit, OnDestroy {
       if (albumId) {
         this.editing = true;
 
-        const album = this.location.getState();
+        const album: any = this.location.getState();
 
         if (album.id) {
           this.form.patchValue(album);
